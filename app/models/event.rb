@@ -3,6 +3,8 @@ class Event < ApplicationRecord
   translates :title, type: :string
   translates :body, type: :text
   
+  visitable :ahoy_visit
+
   mount_uploader :thumbnail, ImagesUploader 
   
   validates :title, presence: true, length: { minimum: 1, maximum: 125 }  

@@ -17,3 +17,4 @@ require("@nathanvda/cocoon");
 import "scroll_top.js";
 import "photo_gallery.js";
 import "resource_form.js";
+import ahoy from "ahoy.js"

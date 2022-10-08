@@ -27,3 +27,11 @@ production:
     pool: 5
     username: <%= Rails.application.credentials.db_credentials[:username] %>
     password: <%= Rails.application.credentials.db_credentials[:password] %>
+
+staging:
+    host: localhost
+    adapter: postgresql
+    database: beta_mgf_db
+    pool: 5
+    username: <%= Rails.application.credentials.db_credentials[:username] %>
+    password: <%= Rails.application.credentials.db_credentials[:password] %>

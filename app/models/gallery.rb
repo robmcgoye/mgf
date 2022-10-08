@@ -2,6 +2,7 @@ class Gallery < ApplicationRecord
   extend Mobility
   translates :title, type: :string
 
+  visitable :ahoy_visit
   mount_uploader :thumbnail, ImagesUploader 
 
   has_many :photos

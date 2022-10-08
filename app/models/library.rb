@@ -2,6 +2,8 @@ class Library < ApplicationRecord
   extend Mobility
   translates :title, type: :string
   translates :body, type: :text
+
+  visitable :ahoy_visit
   
   has_many :subtitles
   accepts_nested_attributes_for :subtitles, allow_destroy: true
