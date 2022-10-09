@@ -26,6 +26,9 @@ set :deploy_to, "/home/mgf_admin/#{fetch :application}"
 # append :linked_files, "config/database.yml"
 append :linked_files, "config/master.key"
 append :linked_files, "config/application.yml"
+append :linked_files, "config/credentials/development.key"
+append :linked_files, "config/credentials/production.key"
+append :linked_files, "config/credentials/staging.key"
 
 # Default value for linked_dirs is []
 # append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
