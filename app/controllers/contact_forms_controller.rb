@@ -25,7 +25,7 @@ class ContactFormsController < ApplicationController
     end
 
     def load_page
-      @page = Page.find_by_name(:contact)
+      @page = Page.find_by_name(:contact) || Page.create!(name: :contact, body: "CONTACT administrator. Newly created page: contact")
     end
 
 end
