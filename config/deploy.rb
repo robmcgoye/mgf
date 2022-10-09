@@ -10,8 +10,11 @@ set :branch, ENV['BRANCH'] if ENV['BRANCH']
 
 # Default deploy_to directory is /var/www/my_app_name
 # set :deploy_to, "/var/www/my_app_name"
-set :deploy_to, "/home/mgf_admin/#{fetch :application}"
-
+if fetch(:stage) == :staging
+  set :deploy_to, "/home/beta_mgf/#{fetch :application}"
+else
+  set :deploy_to, "/home/mgf_admin/#{fetch :application}"
+end
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
 
