@@ -5,6 +5,7 @@ require "capistrano/setup"
 require "capistrano/deploy"
 set :rbenv_type, :user
 set :rbenv_ruby, '3.0.4'
+set :ssh_options, {:forward_agent => true}
 
 # Load the SCM plugin appropriate to your project:
 #
