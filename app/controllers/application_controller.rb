@@ -25,8 +25,15 @@ class ApplicationController < ActionController::Base
       redirect_to root_path      
     end
   end
-
+  
+  def require_admin
+    unless current_user && current_user.admin?
+      render_404
+    end
+  end
+  
   private 
+  
   def track_action
     ahoy.track "Ran action", request.path_parameters
   end
@@ -39,6 +46,14 @@ class ApplicationController < ActionController::Base
   def default_url_options(options = {})
     # {locale: I18n.locale}
     {locale: I18n.locale}.merge options
+  end
+
+  def render_404
+    respond_to do |format|
+      format.html { render :file => "#{Rails.root}/public/404.html", :layout => false, :status => :not_found }
+      format.xml  { head :not_found }
+      format.any  { head :not_found }
+    end
   end
 
 end

@@ -35,6 +35,7 @@ gem 'invisible_captcha', '~> 2.0'
 gem 'cocoon', '~> 1.2', '>= 1.2.15'
 gem 'pagy', '~> 5.10', '>= 5.10.1'
 gem 'ahoy_matey', '~> 4.1'
+gem 'blazer', '~> 2.6', '>= 2.6.5'
 # gem 'will_paginate', '~> 3.3', '>= 3.3.1'
 # gem 'will-paginate-i18n', '~> 0.1.15'
 #=========================================
