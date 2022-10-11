@@ -3,7 +3,8 @@ before_action_method: require_admin
 
 data_sources:
   main:
-    url: <%= Rails.application.credentials[:blazer_db_url] %>
+    url: "postgres://<%= Rails.application.credentials.blazer[:db_user] %>:<%= Rails.application.credentials.blazer[:db_password] %>@localhost:5432/beta_mgf_db"
+    
 
     # statement timeout, in seconds
     # none by default
