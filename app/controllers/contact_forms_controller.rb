@@ -1,7 +1,8 @@
 class ContactFormsController < ApplicationController
   before_action :load_page, only: [:new, :create]
   invisible_captcha only: [:create], honeypot: :nickname
-
+  after_action :track_action, except: [:create] 
+  
   def new
     @contact = ContactForm.new
   end

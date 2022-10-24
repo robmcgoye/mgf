@@ -1,7 +1,8 @@
 class LibrariesController < ApplicationController
   before_action :set_library, only: [:show, :edit, :update, :destroy]
   before_action :require_admin_user, only: [:new, :edit, :update, :destroy]
-  
+  after_action :track_action, except: [:edit, :update, :destroy] 
+    
   def index
     if admin_user?
       @pagy, @libraries = pagy(Library.all, items: 10)

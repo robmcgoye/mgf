@@ -45,4 +45,4 @@ yarn-debug.log*
 /config/credentials/production.key
 
 /config/credentials/staging.key
-/maxmind/*
+/dev_notes/*

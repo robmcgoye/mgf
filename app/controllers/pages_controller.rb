@@ -1,7 +1,8 @@
 class PagesController < ApplicationController
   before_action :require_admin_user, only: [:edit, :update]
   before_action :set_page, only: [:edit, :update, :show]
-
+  after_action :track_action, except: [:edit, :update]  
+  
   def home
     @page = load_page(:home)
   end

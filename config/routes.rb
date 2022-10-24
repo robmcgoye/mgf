@@ -19,7 +19,8 @@ Rails.application.routes.draw do
     delete 'logout', to: 'sessions#destroy'
   end
   
-  mount Blazer::Engine, at: "blazer"
+  get 'analytics', to: 'analytics#dashboard'
+  resources :users, only: [:show]
 
   # match '*path', to: redirect("/#{I18n.default_locale}/%{path}")
   # match '', to: redirect("/#{I18n.default_locale}")

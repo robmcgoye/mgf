@@ -1,7 +1,8 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   before_action :require_admin_user, only: [:new, :edit, :update, :destroy]
-
+  after_action :track_action, except: [:edit, :update, :destroy] 
+  
   def index
     if admin_user?
       @pagy, @events = pagy(Event.all, items: 6)

@@ -48,6 +48,26 @@
             <i class="bi-telephone pe-1"></i><%= t(:contact_us) %>
           <% end %>
         </li>
+        <% if admin_user? %>
+          <li class="nav-item dropdown d-flex align-items-center">
+            <a class="nav-link dropdown-toggle lh-1" href="#" id="navbarDropdown" 
+                    role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="bi-gear pe-1"></i><i>ADMIN</i>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li>
+                <%= link_to "Account", user_path(current_user), class: "dropdown-item" %>
+              </li>
+              <li>
+                <%= link_to "Analytics", analytics_path, class: "dropdown-item" %>
+              </li>
+              <li><hr class="dropdown-divider"></li>
+              <li>
+                <%= link_to t(:logout), logout_path, class: "dropdown-item", method: :delete %>
+              </li>
+            </ul>
+          </li>        
+        <% end %>
       </ul>
       <ul class="navbar-nav ml-auto">
         <li class="nav-item d-flex align-items-center text-nowrap">

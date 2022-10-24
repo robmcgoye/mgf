@@ -1,0 +1,12 @@
+<div class="card mb-3 shadow-lg rounded border mgf-body main-display">
+  <div class="card-body text-dark">
+
+    Total requests: <%= Ahoy::Visit.select(:visitor_token).count %>
+    Unique Visitors: <%= Ahoy::Visit.select(:visitor_token).distinct(:visitor_token).count %>
+    <%= line_chart Ahoy::Visit.group_by_day(:started_at).count %>
+
+<%= pie_chart Ahoy::Visit.group(:country).count %>
+
+<%= bar_chart Ahoy::Event.group_prop(:controller).count %>
+  </div>
+</div>
