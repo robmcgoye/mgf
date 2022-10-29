@@ -13,7 +13,7 @@ class Ahoy::Event < ApplicationRecord
 
   def self.page_requests (number_of_days, language)
     requests = {}
-    all_requests = Ahoy::Event.days_to_get(number_of_days)
+    all_requests = self.days_to_get(number_of_days)
     all_requests.each do |r|
       if r.properties["controller"].nil? ||  r.properties["controller"] == "analytics" ||  
           r.properties["controller"] =="sessions"

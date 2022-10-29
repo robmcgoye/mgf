@@ -4,9 +4,10 @@
     <div class="container pb-3">
       <%= form_tag(analytics_path, :method => "get") do %>
         <%= label_tag(:days, "Enter number of days to display") %>
-        <%= text_field_tag(:days, @days) %>
+        <%= text_field_tag(:days, @days, size: 3) %>
         <%= submit_tag("Run Report", class: "btn btn-sm btn-outline-dark" ) %>
       <% end %>
+      <hr>
     </div>
 
     <h5>Analytics for the last <%= pluralize(@days, "day") %></h5>
