@@ -14,4 +14,8 @@ class Gallery < ApplicationRecord
   
   default_scope { order(sort_order: :asc) }
 
+  def self.get_title(id)
+    (self.find_by_id(id)).title
+  end
+
 end

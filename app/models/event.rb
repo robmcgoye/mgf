@@ -13,5 +13,9 @@ class Event < ApplicationRecord
   validates :body, presence: true
 
   default_scope { order(event_date: :desc) }
+  
+  def self.get_title(id)
+    (self.find_by_id(id)).title
+  end
 
 end

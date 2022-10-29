@@ -34,4 +34,9 @@ class Library < ApplicationRecord
   def set_defaults
     self.action ||= 'none'
   end
+
+  def self.get_title(id)
+    (self.find_by_id(id)).title
+  end
+
 end

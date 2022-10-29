@@ -1,12 +1,51 @@
 <div class="card mb-3 shadow-lg rounded border mgf-body main-display">
   <div class="card-body text-dark">
 
-    Total requests: <%= Ahoy::Visit.select(:visitor_token).count %>
-    Unique Visitors: <%= Ahoy::Visit.select(:visitor_token).distinct(:visitor_token).count %>
-    <%= line_chart Ahoy::Visit.group_by_day(:started_at).count %>
+    <div class="container pb-3">
+      <%= form_tag(analytics_path, :method => "get") do %>
+        <%= label_tag(:days, "Enter number of days to display") %>
+        <%= text_field_tag(:days, @days) %>
+        <%= submit_tag("Run Report", class: "btn btn-sm btn-outline-dark" ) %>
+      <% end %>
+    </div>
 
-<%= pie_chart Ahoy::Visit.group(:country).count %>
+    <h5>Analytics for the last <%= pluralize(@days, "day") %></h5>
+    <div class="row">
+      <div class="col">
+        <%= render 'table_totals', heading: "Visits", 
+            total: (Ahoy::Visit.days_to_get(@days)).select(:visitor_token).count %>
+      </div>
+      <div class="col">
+        <%= render 'table_totals', heading: "Unique Visitors", 
+            total: (Ahoy::Visit.days_to_get(@days)).select(:visitor_token).distinct(:visitor_token).count %>
+      </div>
+      <div class="col">
+        <%= render 'table_totals', heading: "Pages Served", total: (Ahoy::Event.days_to_get(@days)).count %>
+      </div>
+    </div>
 
-<%= bar_chart Ahoy::Event.group_prop(:controller).count %>
+    <div class="container pb-2">
+      <h6>Traffic for the last <%= pluralize(@days, "day") %></h6>
+      <%= line_chart (Ahoy::Visit.days_to_get(@days)).group_by_day(:started_at).count, ytitle: "Requests" %>
+    </div>
+
+    <div class="container">
+      <h6>English ('en') for the last <%= pluralize(@days, "day") %></h6>
+      <%= bar_chart Ahoy::Event.page_requests(@days, "en"), xtitle: "Requests", ytitle: "Pages" %>
+    </div>
+
+    <div class="container">
+       <h6>Spanish ('es') for the last <%= pluralize(@days, "day") %></h6>
+      <%= bar_chart Ahoy::Event.page_requests(@days, "es"), xtitle: "Requests", ytitle: "Pages" %>
+    </div>
+
+    <div class="container">
+      <h6>Countries for the last <%= pluralize(@days, "day") %></h6>
+      <%= pie_chart (Ahoy::Visit.days_to_get(@days)).group(:country).count %>
+    </div>
+
+<%# height: "500px" %>
+
+
   </div>
 </div>
